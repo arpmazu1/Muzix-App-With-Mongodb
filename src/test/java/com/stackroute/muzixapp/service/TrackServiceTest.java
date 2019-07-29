@@ -87,10 +87,10 @@ public class TrackServiceTest {
     public void updateTrackTestSuccess()  {
         Track track1 = new Track(101,"Girls like you","Maroon 5 & Cardi B ");
         when(trackRepository.save((Track) any())).thenReturn(track1);
-        System.out.println(track1);
+
         Track savedTrack =
                 trackService.updateTrack(track1);
-        System.out.println(savedTrack);
+        
         Assert.assertEquals(track1.toString(),savedTrack.toString());
 
 
