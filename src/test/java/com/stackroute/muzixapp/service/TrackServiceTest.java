@@ -3,6 +3,7 @@ package com.stackroute.muzixapp.service;
 import com.stackroute.muzixapp.domain.Track;
 import com.stackroute.muzixapp.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzixapp.repository.TrackRepository;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.h2.command.dml.MergeUsing;
 import org.junit.Assert;
 import org.junit.Before;
@@ -84,14 +85,17 @@ public class TrackServiceTest {
     //test for updateTrack method
     @Test
     public void updateTrackTestSuccess()  {
-
-        when(trackRepository.save((Track) any())).thenReturn(track);
         Track track1 = new Track(101,"Girls like you","Maroon 5 & Cardi B ");
-        Track savedTrack = trackService.updateTrack(track1);
-        Assert.assertEquals(track1,savedTrack);
+        when(trackRepository.save((Track) any())).thenReturn(track1);
+        System.out.println(track1);
+        Track savedTrack =
+                trackService.updateTrack(track1);
+        System.out.println(savedTrack);
+        Assert.assertEquals(track1.toString(),savedTrack.toString());
+
 
         //verify here verifies that userRepository save method is only called once
-        verify(trackRepository,times(1)).save(track);
+        verify(trackRepository,times(1)).save(track1);
 
     }
 
