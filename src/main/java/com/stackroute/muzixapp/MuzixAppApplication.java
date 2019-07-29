@@ -12,27 +12,27 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //main Spring boot Application
 //using commandlinerunner
 @SpringBootApplication
-public class MuzixAppApplication implements CommandLineRunner {
+public class MuzixAppApplication{//implements CommandLineRunner {
 
-    TrackService trackService;
-
-    @Autowired
-    public void setTrackService(TrackService trackService) {
-        this.trackService = trackService;
-    }
-
-    protected final Log logger = LogFactory.getLog(getClass());
-
-
-    @Override
-    public void run(String... args) throws Exception {
-        trackService.saveTrack(new Track(23, "Main hoon hero tera", "Hindi"));
-        trackService.saveTrack(new Track(34, "Take me to church", "English"));
-        trackService.saveTrack(new Track(43, "Despasito", "Spanish"));
-
-        logger.info("Application Started !!");
-
-    }
+//    TrackService trackService;
+//
+//    @Autowired
+//    public void setTrackService(TrackService trackService) {
+//        this.trackService = trackService;
+//    }
+//
+//    protected final Log logger = LogFactory.getLog(getClass());
+//
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//        trackService.saveTrack(new Track(23, "Main hoon hero tera", "Hindi"));
+//        trackService.saveTrack(new Track(34, "Take me to church", "English"));
+//        trackService.saveTrack(new Track(43, "Despasito", "Spanish"));
+//
+//        logger.info("Application Started !!");
+//
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(MuzixAppApplication.class, args);

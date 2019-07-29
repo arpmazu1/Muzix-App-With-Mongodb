@@ -33,10 +33,14 @@ public class TrackServiceImpl implements TrackService {
     //throws Exception TrackAlreadyExists
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistsException {
-        if (trackRepository.existsById(track.getId())){
+        if (trackRepository.existsById(track.getId())) {
             throw new TrackAlreadyExistsException("Track already exists");
         }
-            Track savedTrack = trackRepository.save(track);
+        Track savedTrack = trackRepository.save(track);
+        if(savedTrack == null)
+        {
+            throw new TrackAlreadyExistsException("Track already exists");
+        }
         return savedTrack;
     }
 
@@ -63,15 +67,17 @@ public class TrackServiceImpl implements TrackService {
     //throws exception TrackNotFoundException
     @Override
     public Track getTrackByName(String name) throws TrackNotFoundException {
-        if(trackRepository.findTrackByName(name)==null){
+        if (trackRepository.findTrackByName(name) == null) {
             throw new TrackNotFoundException("Track not found");
 
         }
         return trackRepository.findTrackByName(name);
     }
 
+
+
     @Override
-    public void getTopTracks(){
+    public void getTopTracks() {
         //fetching the data form last fm
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl
@@ -97,16 +103,19 @@ public class TrackServiceImpl implements TrackService {
                 //save it in the repo
                 trackRepository.save(track);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-
-        }
-
     }
+
+    @Override
+    public Track getTrackById(int id) {
+        return trackRepository.findById(id).orElse(null);
+    }
+
+}
 
 
 

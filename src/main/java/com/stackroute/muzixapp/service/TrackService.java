@@ -23,4 +23,5 @@ public interface TrackService {
 
     void getTopTracks();
 
+    Track getTrackById (int id);
 }
