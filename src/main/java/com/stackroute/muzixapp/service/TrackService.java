@@ -19,7 +19,7 @@ public interface TrackService {
 
     Track updateTrack(Track track);
 
-    Track getTrackByName(String name) throws TrackNotFoundException;
+    List<Track> getTrackByName(String name) throws TrackNotFoundException;
 
     void getTopTracks();
 

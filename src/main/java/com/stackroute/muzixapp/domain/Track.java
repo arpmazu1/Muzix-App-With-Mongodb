@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 
 //track class
-@Entity
+@Document
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,11 +17,11 @@ import javax.persistence.Id;
 public class Track {
 
         //variables
-        @Id
+
         private int id;
-        @Column
+
         private String name;
-        @Column
+
         private String comment;
 
 
